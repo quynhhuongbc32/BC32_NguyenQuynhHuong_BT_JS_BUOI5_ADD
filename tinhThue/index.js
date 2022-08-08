@@ -20,36 +20,37 @@ document.getElementById("tinh").onclick = function(){
     }
 
 
-    thuNhapChiuThue = tongThuNhap - 4 - soNguoi * 1.6;
+    thuNhapChiuThue = tongThuNhap - 4e+6 - soNguoi * 1600000;
+    // 1.6e+6 máy báo lỗi nên e viết 1600000 ạ
 
     thueSuat = 0;
-    if(thuNhapChiuThue <= 60) {
-        thueSuat = 5;
+    // 
+    if(tongThuNhap < 11e+6){
+        alert("Số tiền thu nhập không hợp lệ");
+    }else
+     {if(thuNhapChiuThue <= 60e+6 ){
+        thueSuat = thuNhapChiuThue * 0.05;
 
-    } else if(thuNhapChiuThue >= 61 && thuNhapChiuThue <= 120) {
-        thueSuat = 10;
+    } else if(thuNhapChiuThue <= 120e+6){
+        thueSuat = thuNhapChiuThue * 0.1;
+    }else if(thuNhapChiuThue <= 210e+6){
+        thueSuat = thuNhapChiuThue * 0.15;
 
-    } else if(thuNhapChiuThue >= 121 && thuNhapChiuThue <= 210) {
-        thueSuat = 15;
+    } else if(thuNhapChiuThue <= 384e+6){
+        thueSuat = thuNhapChiuThue * 0.2;
 
-    } else if(thuNhapChiuThue >= 211 && thuNhapChiuThue <= 384) {
-        thueSuat = 20;
+    }else if(thuNhapChiuThue <= 624e+6){
+        thueSuat = thuNhapChiuThue * 0.25;
 
-    } else if(thuNhapChiuThue >= 385 && thuNhapChiuThue <= 624) {
-        thueSuat = 25;
-
-    } else if(thuNhapChiuThue >= 625 && thuNhapChiuThue <= 960) {
-        thueSuat = 30;
-
-    } else if(thuNhapChiuThue > 960) {
-        thueSuat = 35;
+    } else if(thuNhapChiuThue <= 960e+6){
+        thueSuat = thuNhapChiuThue * 0.3;
+    }else{
+        thueSuat = thuNhapChiuThue * 0.35;
     }
-
-    thuePhaiDong = thuNhapChiuThue * (thueSuat/100);
-    if(thuePhaiDong <= 0) {
-        thuePhaiDong = 0;
-    }
+    
+}
 
     // Đầu ra
-    document.getElementById('showInfoTotal').innerHTML = `Ông/bà ${hoTen} phải đóng ${thuePhaiDong} triệu đồng`;
+    let current = new Intl.NumberFormat("vn-VN");
+    document.getElementById('showInfoTotal').innerHTML = `Ông/bà:  ${hoTen} phải đóng ${current.format(thueSuat)} VND`;
 }
