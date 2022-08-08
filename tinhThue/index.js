@@ -20,10 +20,10 @@ document.getElementById("tinh").onclick = function(){
     }
 
 
-    thuNhapChiuThue = tongThuNhap - 4e+6 - soNguoi * 1600000;
+    var thuNhapChiuThue = tongThuNhap - 4e+6 - soNguoi * 1600000;
     // 1.6e+6 máy báo lỗi nên e viết 1600000 ạ
 
-    thueSuat = 0;
+    var thueSuat = 0;
     // 
     if(tongThuNhap < 11e+6){
         alert("Số tiền thu nhập không hợp lệ");
